@@ -1,0 +1,43 @@
+.title_environment
+ %h3{:style => "text-align: center; padding:10px;"} Variable
+.show_environment
+ %table.table.table-striped
+  %thead
+   %tr
+    %th Id
+    %th Key
+    %th Value
+    %th Created_at
+    %th Updated_at
+    %th Environment_id
+    %th Service_id
+    %th{:colspan => '3'} Option
+   %tbody
+   - @variable['records'].each do |s|
+    %tr
+     %td= s['id']
+     %td= s['key'] 
+     %td= s['value']
+     %td= s['created_at']
+     %td= s['updated_at']
+     %td= s['environment_id']
+     %td= s['service_id']
+     %td= link_to "show", variable_path
+     %td= link_to "edit", edit_variable_path(s['id'])
+.col-sm-5
+ #example2_info.dataTables_info{"aria-live" => "polite", :role => "status",:style =>"color:red;"} Showing #{@per_page} of entries #{@record_total} record in #{@total_page} pages
+.col-sm-5
+ - if(@total_page != 1)
+  %ul#pagination-demo.pagination-sm.pagination{:style => "text-align:center;margin:0px"}
+   %li.prev
+    %a.page-link{:href => "http://localhost:3000/variable?page=#{@prev}"} Previous
+   - (@first..@last).each do |p|
+    - if p == @cur_page
+     %li.page-item.active
+      %a.page-link{:href => "http://localhost:3000/variable?page=#{p}"}=p
+    -else
+     %li.page-item
+      %a.page-link{:href => "http://localhost:3000/variable?page=#{p}"}=p
+   %li.next
+    %a.page-link{:href => "http://localhost:3000/variable?page=#{@next}"} Next
+-# .disabled

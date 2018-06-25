@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nova Frontend</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'accounts', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'accounts', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  </head>
+
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="/admin" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>RAILS</b></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Shop</b>RAILS</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 916px;">
+
+        <%= yield %>
+        <div class="mess" style="padding-top: 30px; text-align: center;">
+          <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+          <% end %>
+        </div>
+      </div>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2014-2016 <a href="#">Almsaeed Studio</a>.</strong> All rights
+        reserved.
+      </footer>
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+
+  </body>
+</html>

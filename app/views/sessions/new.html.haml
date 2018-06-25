@@ -1,0 +1,62 @@
+.form_login
+  .container
+    .row
+      .col-lg-offset-3.col-md-6
+        %h1 Login
+        = form_for :session, url: login_path do |f|
+          .form-group
+            = f.label :email
+            = f.text_field :email, placeholder: "Enter your email", class: "form-control"
+          .form-group
+            = f.label :password
+            = f.password_field :password, placeholder: "Enter your password", |
+              class: "form-control"                                           |
+          .text-center
+            = f.submit "Login", class: "btn btn-info col-lg-12", :id => "btnLogin"
+-# If you want to delete all of the data in the datastore you can use the clear() function.
+
+-# localStorage.clear();
+
+:javascript
+  $('#btnLogin').click(function(e){
+   var email = $('#session_email').val();
+   var pass = $('#session_password').val();
+   e.preventDefault();
+   $.ajax({
+    url: 'https://authservice.edumall.io/auth/sign_in',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      email: email,
+      password: pass
+    },
+    success: function(data,textStatus, request) {
+      a = request.getAllResponseHeaders()
+      b = data
+      downline = a.split("\n")
+      uid = downline["3"].split(": ")
+      client = downline["1"].split(": ")
+      access_token = downline["0"].split(": ")
+
+        if (typeof(Storage) !== "undefined") {
+        // uid
+        localStorage.setItem("uid", uid["1"]);
+        //client
+        localStorage.setItem("client", client["1"]);
+        // access_token
+        localStorage.setItem("access_token", access_token["1"]);
+       } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+      }
+      window.location.replace("/admin");
+    },
+    error: function() {
+        alert('Error email or password');
+        window.location.replace("/login");
+    }
+  });
+  });
+
+
+
+

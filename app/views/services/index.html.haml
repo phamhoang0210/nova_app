@@ -1,0 +1,34 @@
+.title_environment
+ %h3{:style => "text-align: center; padding:10px;"} Service
+.show_environment
+ %table.table.table-striped
+  %thead
+   %tr
+    %th Id
+    %th Name
+    %th Created_at
+    %th Updated_at
+    %th{:colspan => '3'} Option
+   %tbody
+   - @service['records'].each do |s|
+    %tr
+     %td= s['id']
+     %td= s['name']
+     %td= s['created_at']
+     %td= s['updated_at']
+     %td= link_to "show", service_path
+     %td= link_to "edit", edit_service_path(s['id'])
+.col-lg-offset-5.col-md-6
+ - if(@total_page != 1)
+  %ul#pagination-demo.pagination-sm.pagination{:style => "text-align:center"}
+   %li.prev
+    %a.page-link{:href => "http://localhost:3000/service?page=#{@prev}"} Previous
+   - (@first..@last).each do |p|
+    - if p == @cur_page
+     %li.page-item.active
+      %a.page-link{:href => "http://localhost:3000/service?page=#{p}"}=p
+    -else
+     %li.page-item
+      %a.page-link{:href => "http://localhost:3000/service?page=#{p}"}=p
+   %li.next
+    %a.page-link{:href => "http://localhost:3000/service?page=#{@next}"} Next

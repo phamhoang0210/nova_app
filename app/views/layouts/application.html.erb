@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nova Frontend</title>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  </head>
+
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="/admin" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>RAILS</b></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Shop</b>RAILS</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a href="/admin" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= image_tag "user2-160x160.jpg", class: "user-image", alt: "User Image"  %>
+
+                  <span class="hidden-xs"><%= @name %></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <%= image_tag "user2-160x160.jpg", class: "img-circle", alt: "User Image"  %>
+                    <p>
+                      <%= @name %>
+                      <small>Member since <%= @createat %></small>
+                    </p>
+                  </li>
+
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                      <!--<a href="#" class="btn btn-default btn-flat">Sign out</a>-->
+                      <%= link_to "Sign Out", "/auth/logout", method: :delete, class: "btn btn-default btn-flat" %>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <%= image_tag "user2-160x160.jpg", class: "img-circle", alt: "User Image"  %>
+            </div>
+            <div class="pull-left info">
+              <p><%= @name %></p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+          <!--&lt;!&ndash; search form &ndash;&gt;-->
+          <!--<form action="#" method="get" class="sidebar-form">-->
+            <!--<div class="input-group">-->
+              <!--<input type="text" name="q" class="form-control" placeholder="Search...">-->
+              <!--<span class="input-group-btn">-->
+                  <!--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>-->
+                  <!--</button>-->
+                <!--</span>-->
+            <!--</div>-->
+          <!--</form>-->
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+
+           <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+            <!--   class="active" -->
+                <li><a href="/environment"><i class="fa fa-circle-o"></i> Environment</a></li>
+                <li><a href="/service"><i class="fa fa-circle-o"></i> Service</a></li>
+                <li><a href="/variable"><i class="fa fa-circle-o"></i> Variable</a></li>
+              </ul>
+            </li>
+            <li id="account" class=""><a href="/account/list"><i class="fa fa-user-o" aria-hidden="true"></i> <span>Account</span></a></li>
+            <!--<li class="header">LABELS</li>-->
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 916px;">
+
+        <%= yield %>
+
+      </div>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2014-2016 <a href="#">Almsaeed Studio</a>.</strong> All rights
+        reserved.
+      </footer>
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+
+  </body>
+</html>
